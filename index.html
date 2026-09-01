@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career Diary & Memory Capsule - Website buku harian perjalanan karir personal untuk mendokumentasikan jejak, refleksi, dan mengenang kembali momen berharga pada tanggal dan bulan yang sama.">
+  <meta name="keywords" content="career diary, buku harian karir, perjalanan karir, on this day, refleksi profesional, memory capsule">
+  <meta name="author" content="Yoan">
+  <title>Perjalanan Saya • Career Diary & Memory Capsule</title>
+
+  <!-- Google Fonts (Plus Jakarta Sans, Newsreader, Playfair Display & Caveat for Authentic Diary feel) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Falling Petals Container (Bunga-bunga Mengambang) -->
+  <div class="petals-container" id="petalsContainer" aria-hidden="true"></div>
+
+  <!-- Background Ambient Glows (Warm Rose, Sage & Honey Amber) -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header" id="mainHeader">
+    <div class="header-container">
+      <a href="#" class="brand-logo" id="brandLogo">
+        <span class="logo-icon">🌸</span>
+        <div class="logo-text">
+          <span class="brand-title" id="displayAuthorName">Buku Harian Karir</span>
+          <span class="brand-subtitle">🌿 Kapsul Memori & Bunga Kenangan</span>
+        </div>
+      </a>
+
+      <div class="header-center-info">
+        <div class="current-date-badge" id="currentDateBadge">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          <span id="headerTodayText">Hari ini: Memuat...</span>
+        </div>
+      </div>
+
+      <nav class="header-nav">
+        <a href="#onThisDaySection" class="nav-link" id="navOnThisDayLink">
+          <span class="nav-pill-badge" id="navMemoryCountBadge">0</span>
+          Kilas Balik
+        </a>
+        <a href="#timelineSection" class="nav-link">Linimasa</a>
+        <a href="#entriesSection" class="nav-link">Semua Catatan</a>
+        <a href="#profileSection" class="nav-link">Tentang</a>
+        <button class="btn btn-secondary btn-sm" id="btnOpenBackupModal" onclick="openBackupModal()" title="Pengaturan & Cadangan Data">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <span class="btn-text-desktop">Data</span>
+        </button>
+        <button class="btn btn-primary btn-sm btn-glow" id="btnOpenCreateModal" onclick="openWriterModal()">
+          <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Tulis Diary</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="hero-capsule-tag">
+            <span class="pulse-flower">🌸</span>
+            <span>Buku Harian & Kapsul Waktu Karir</span>
+          </div>
+          
+          <!-- Large Main Title with floral accents -->
+          <div class="hero-title-wrapper">
+            <span class="hero-floral-ornament left">🌿</span>
+            <h1 class="hero-title">
+              <span class="gradient-text">Perjalanan Saya</span>
+            </h1>
+            <span class="hero-floral-ornament right">🌸</span>
+          </div>
+          <div class="hero-handwritten-note">"Setiap hari yang terlewati adalah kelopak bunga yang merangkai kisah perjalananmu."</div>
+          
+          <p class="hero-description" id="displayAuthorBio">
+            Setiap hari dalam karir menyimpan cerita: kemenangan kecil, keraguan yang terlewati, dan keputusan yang membentuk masa depan. Tulis hari ini, kenang kembali di tanggal yang sama di tahun-tahun mendatang.
+          </p>
+
+          <!-- Quick Stats Bar -->
+          <div class="hero-stats-grid">
+            <div class="stat-card">
+              <span class="stat-number" id="statTotalEntries">0</span>
+              <span class="stat-label">Catatan Diary 🌸</span>
+            </div>
+            <div class="stat-card stat-highlight">
+              <span class="stat-number" id="statFlashbacks">0</span>
+              <span class="stat-label">Kenangan Hari Ini ✨</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="statYearsSpan">0</span>
+              <span class="stat-label">Rentang Tahun 🌿</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" id="statLessonsCount">0</span>
+              <span class="stat-label">Pelajaran Berharga 💡</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary btn-lg btn-glow" id="heroBtnWrite" onclick="openWriterModal()">
+              <span class="btn-icon-flower">✍️</span>
+              <span>Tulis Cerita Hari Ini</span>
+            </button>
+            <button class="btn btn-secondary btn-lg" id="heroBtnExplore" onclick="scrollToSection('onThisDaySection')">
+              <span class="btn-icon-flower">🌸</span>
+              <span>Jelajahi Kilas Balik</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Hero Memory Widget (Time Machine & Calendar) -->
+        <div class="hero-widget-panel">
+          <div class="widget-card glass-panel diary-card-framed">
+            <div class="washi-tape washi-tape-top-center washi-rose"></div>
+            <div class="widget-header">
+              <div class="widget-title-group">
+                <span class="widget-icon">⏳</span>
+                <div>
+                  <h3 class="widget-title">Mesin Waktu Kenangan 🌸</h3>
+                  <p class="widget-subtitle">Telusuri catatan pada tanggal & bulan pilihan</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mini Interactive Calendar / Date Selector -->
+            <div class="calendar-widget-container" id="calendarWidgetContainer">
+              <div class="calendar-nav-bar">
+                <button class="cal-nav-btn" id="calPrevMonthBtn" onclick="navigateCalendar(-1)" title="Bulan Sebelumnya">&lt;</button>
+                <span class="cal-current-month-year" id="calMonthYearDisplay">Bulan Tahun</span>
+                <button class="cal-nav-btn" id="calNextMonthBtn" onclick="navigateCalendar(1)" title="Bulan Selanjutnya">&gt;</button>
+              </div>
+              <div class="calendar-weekdays-grid">
+                <span>Min</span><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span>
+              </div>
+              <div class="calendar-days-grid" id="calendarDaysGrid">
+                <!-- Dynamically generated days -->
+              </div>
+            </div>
+
+            <!-- Quick Date Finder -->
+            <div class="date-picker-fast-box">
+              <label for="timeMachineDatePicker" class="picker-label">Pilih Tanggal Tertentu:</label>
+              <div class="picker-input-row">
+                <input type="date" id="timeMachineDatePicker" class="date-input-styled">
+                <button class="btn btn-secondary btn-sm" id="btnGoToDate" onclick="goToSelectedInputDate()">Lihat</button>
+                <button class="btn btn-secondary btn-sm" id="btnResetToToday" onclick="resetCalendarToToday()">Hari Ini 🌸</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- On This Day Section (Kilas Balik Hari Ini) -->
+    <section class="on-this-day-section" id="onThisDaySection">
+      <div class="section-container">
+        <div class="on-this-day-banner glass-panel diary-card-framed" id="onThisDayBanner">
+          <div class="washi-tape washi-tape-left washi-gold"></div>
+          <div class="washi-tape washi-tape-right washi-sage"></div>
+
+          <div class="banner-badge-row">
+            <div class="flashback-pill">
+              <span class="sparkle-icon">🌸</span>
+              <span id="flashbackPillText">KILAS BALIK MEMORI</span>
+            </div>
+            <span class="memory-count-text" id="memoryCountText">Menemukan kenangan di tanggal ini</span>
+          </div>
+
+          <div class="banner-main-row">
+            <div>
+              <h2 class="banner-title" id="bannerTitleHeading">
+                "Di Tanggal Ini Beberapa Tahun yang Lalu..."
+              </h2>
+              <p class="banner-subtitle" id="bannerSubtitleText">
+                Melihat kembali apa yang kamu pikirkan, rasakan, dan perjuangkan pada tanggal dan bulan yang sama di masa lalu.
+              </p>
+            </div>
+            <button class="btn btn-primary btn-glow" id="btnWriteForThisDay" onclick="openWriterForCurrentSelection()">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <span>Tambah Catatan di Tanggal Ini</span>
+            </button>
+          </div>
+
+          <!-- Flashback Cards Carousel / Grid -->
+          <div class="flashback-cards-container" id="flashbackCardsContainer">
+            <!-- Dynamically populated flashback cards -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Timeline & Chronicle Section -->
+    <section class="timeline-section" id="timelineSection">
+      <div class="section-container">
+        <div class="section-header-centered">
+          <span class="section-tag">🌿 Linimasa Perjalanan 🌸</span>
+          <h2 class="section-title">Babak Demi Babak Jejak Karir</h2>
+          <p class="section-subtitle">Bagaimana setiap langkah, tantangan, dan keputusan merangkai pertumbuhan profesionalmu.</p>
+        </div>
+
+        <div class="timeline-wrapper">
+          <div class="timeline-line"></div>
+          <div class="timeline-items-container" id="timelineItemsContainer">
+            <!-- Dynamically generated timeline nodes -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- All Diary Entries Collection Section -->
+    <section class="entries-section" id="entriesSection">
+      <div class="section-container">
+        <div class="section-header-row">
+          <div>
+            <span class="section-tag">📖 Lembar Cerita & Arsip</span>
+            <h2 class="section-title">Semua Catatan Diary & Refleksi</h2>
+          </div>
+          <div class="entries-header-actions">
+            <button class="btn btn-primary btn-glow" id="btnEntriesSectionWrite" onclick="openWriterModal()">
+              <span class="btn-icon-flower">🌸</span>
+              <span>Tulis Catatan Baru</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter & Search Controls Bar -->
+        <div class="filter-controls-bar glass-panel diary-card-framed">
+          <!-- Search Input -->
+          <div class="search-input-group">
+            <svg class="icon-svg search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" class="search-field" placeholder="Cari judul, topik, perusahaan, atau pelajaran...">
+            <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()" style="display:none;">&times;</button>
+          </div>
+
+          <!-- Mood / Category Filter Tabs with Floral Icons -->
+          <div class="filter-tabs-scroll" id="filterTabsScroll">
+            <button class="filter-tab active" data-filter="all" onclick="setFilterCategory('all', this)">🌸 Semua Entri</button>
+            <button class="filter-tab" data-filter="flashback" onclick="setFilterCategory('flashback', this)">✨ Kilas Balik</button>
+            <button class="filter-tab" data-filter="ambisius" onclick="setFilterCategory('ambisius', this)">🌺 Mekar (Ambisius)</button>
+            <button class="filter-tab" data-filter="tumbuh" onclick="setFilterCategory('tumbuh', this)">🌿 Bertumbuh</button>
+            <button class="filter-tab" data-filter="menantang" onclick="setFilterCategory('menantang', this)">🌧️ Menantang</button>
+            <button class="filter-tab" data-filter="pencerahan" onclick="setFilterCategory('pencerahan', this)">🌻 Pencerahan</button>
+            <button class="filter-tab" data-filter="bangga" onclick="setFilterCategory('bangga', this)">💐 Prestasi</button>
+            <button class="filter-tab" data-filter="reflektif" onclick="setFilterCategory('reflektif', this)">☕ Refleksi Santai</button>
+          </div>
+
+          <!-- Year Filter Dropdown -->
+          <div class="year-filter-wrapper">
+            <select id="yearFilterSelect" class="select-styled" onchange="setFilterYear(this.value)">
+              <option value="all">Semua Tahun</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Diary Entries Grid -->
+        <div class="entries-grid" id="entriesGrid">
+          <!-- Dynamically populated diary entry cards -->
+        </div>
+
+        <!-- Empty State Message -->
+        <div class="empty-state-card glass-panel" id="emptyStateCard" style="display: none;">
+          <div class="empty-icon">📭</div>
+          <h3 class="empty-title">Tidak Ada Catatan yang Ditemukan</h3>
+          <p class="empty-desc">Coba ubah kata kunci pencarian atau filter yang dipilih.</p>
+          <button class="btn btn-secondary btn-sm" id="btnResetFilters" onclick="resetAllFilters()">Reset Semua Filter</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile & Philosophy Section -->
+    <section class="profile-section" id="profileSection">
+      <div class="section-container">
+        <div class="profile-card glass-panel">
+          <div class="profile-avatar-column">
+            <div class="avatar-frame">
+              <div class="avatar-placeholder" id="avatarInitial">Y</div>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btnEditProfile" onclick="openBackupModal()">Edit Profil</button>
+          </div>
+
+          <div class="profile-info-column">
+            <span class="section-tag">Tentang Penulis</span>
+            <h2 class="profile-name" id="profileAuthorName">Yoan</h2>
+            <p class="profile-headline" id="profileAuthorHeadline">Software Engineer & Life-Long Learner</p>
+            <p class="profile-bio-text" id="profileFullBio">
+              Membangun karir bukan hanya tentang mendaki tangga jabatan, melainkan tentang jejak kebaikan yang ditinggalkan, ketangguhan saat terjatuh, dan cerita-cerita kecil yang layak untuk diingat.
+            </p>
+
+            <div class="profile-meta-row">
+              <div class="profile-meta-item">
+                <span class="meta-icon">📍</span>
+                <span id="profileLocation">Jakarta, Indonesia</span>
+              </div>
+              <div class="profile-meta-item">
+                <span class="meta-icon">💼</span>
+                <span id="profileCurrentRole">Tech Professional</span>
+              </div>
+              <div class="profile-meta-item">
+                <span class="meta-icon">🎯</span>
+                <span>Fokus: Continuous Growth & Craftsmanship</span>
+              </div>
+            </div>
+
+            <!-- Social / Network Links -->
+            <div class="profile-links-row" id="profileLinksRow">
+              <a href="#" class="social-link" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="#" class="social-link" target="_blank" rel="noopener">GitHub</a>
+              <a href="mailto:yoan@example.com" class="social-link">Email</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <span class="footer-brand">Perjalanan Saya • Career Diary</span>
+        <p class="footer-tagline">Menyimpan kenangan dan pelajaran berharga dalam setiap langkah perjalanan.</p>
+      </div>
+      <div class="footer-right">
+        <p class="copyright-text">Dibuat dengan rasa cinta pada proses bertumbuh • &copy; 2026</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. Zen Diary Reader Modal -->
+  <div class="modal-backdrop" id="readerModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-reader glass-panel">
+      <!-- Reading Progress Bar -->
+      <div class="reading-progress-track">
+        <div class="reading-progress-bar" id="readerProgressBar"></div>
+      </div>
+
+      <div class="modal-header">
+        <div class="reader-meta-top">
+          <span class="mood-badge" id="readerMoodBadge">🚀 Ambisius</span>
+          <span class="reader-date-text" id="readerDateText">1 September 2024</span>
+          <span class="flashback-marker-pill" id="readerFlashbackMarker" style="display:none;">
+            ✨ Ditulis pada tanggal & bulan yang sama
+          </span>
+        </div>
+        <button class="modal-close-btn" id="btnReaderClose" onclick="closeReaderModal()" title="Tutup">&times;</button>
+      </div>
+
+      <div class="modal-body reader-body" id="readerBodyScroll">
+        <div class="reader-header-area">
+          <h1 class="reader-article-title" id="readerTitle">Judul Cerita Karir</h1>
+          <div class="reader-role-company">
+            <span class="reader-role" id="readerRole">Posisi / Peran</span>
+            <span class="reader-dot">•</span>
+            <span class="reader-company" id="readerCompany">Perusahaan / Proyek</span>
+            <span class="reader-dot">•</span>
+            <span class="reader-read-time" id="readerReadTime">3 menit baca</span>
+          </div>
+        </div>
+
+        <!-- Flashback Highlight Alert Box -->
+        <div class="flashback-reader-alert" id="readerFlashbackAlert" style="display:none;">
+          <div class="alert-icon">🕰️</div>
+          <div>
+            <strong>Kilas Balik Memori:</strong>
+            <p id="readerFlashbackAlertDesc">Cerita ini kamu tulis beberapa tahun lalu pada tanggal dan bulan yang sama.</p>
+          </div>
+        </div>
+
+        <!-- Reader Cover Image Banner -->
+        <div class="reader-cover-image-container" id="readerCoverImageContainer" style="display:none;">
+          <img id="readerCoverImage" class="reader-cover-image" src="" alt="Foto Kenangan">
+        </div>
+
+        <!-- Main Narrative Content -->
+        <div class="reader-content-typography" id="readerContent">
+          <!-- Rendered article content -->
+        </div>
+
+        <!-- Future Self Message Card -->
+        <div class="future-message-card" id="readerFutureMessageContainer">
+          <div class="card-tag-row">
+            <span class="card-icon">✉️</span>
+            <span class="card-label">Pesan untuk Diri Sendiri di Masa Depan:</span>
+          </div>
+          <blockquote class="future-quote" id="readerFutureMessage">
+            "Ingatlah betapa kerasnya kamu berjuang hari ini..."
+          </blockquote>
+        </div>
+
+        <!-- Key Lessons Card -->
+        <div class="lessons-card" id="readerLessonsContainer">
+          <div class="card-tag-row">
+            <span class="card-icon">💡</span>
+            <span class="card-label">Pelajaran Berharga Hari Ini:</span>
+          </div>
+          <ul class="lessons-list" id="readerLessonsList">
+            <!-- Lessons items -->
+          </ul>
+        </div>
+
+        <!-- Reader Footer Interaction -->
+        <div class="reader-interaction-bar">
+          <button class="btn btn-secondary btn-sm" id="btnClapAppreciation" onclick="handleClap()">
+            <span class="clap-icon">👏</span>
+            <span id="clapCountText">Apresiasi Diri (0)</span>
+          </button>
+          <div class="reader-actions-group">
+            <button class="btn btn-secondary btn-sm" id="btnReaderEdit" onclick="handleEditFromReader()">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+              <span>Edit</span>
+            </button>
+            <button class="btn btn-danger-subtle btn-sm" id="btnReaderDelete" onclick="handleDeleteFromReader()">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+              <span>Hapus</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Write / Edit Diary Modal -->
+  <div class="modal-backdrop" id="writerModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-writer glass-panel">
+      <div class="modal-header">
+        <div class="writer-header-title-group">
+          <span class="writer-icon">✍️</span>
+          <div>
+            <h2 class="modal-title" id="writerModalTitle">Tulis Catatan Perjalanan Karir</h2>
+            <p class="modal-subtitle">Abadikan kisah, perasaan, dan refleksi harimu</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btnWriterClose" onclick="closeWriterModal()" title="Tutup">&times;</button>
+      </div>
+
+      <form id="diaryForm" class="modal-body writer-body" onsubmit="handleSaveDiary(event)">
+        <input type="hidden" id="formEntryId" value="">
+
+        <!-- Row 1: Date & Mood -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="formDate" class="form-label">
+              Tanggal Kejadian / Catatan <span class="required">*</span>
+            </label>
+            <input type="date" id="formDate" class="form-control" required>
+            <small class="form-hint">Otomatis diisi tanggal hari ini atau pilih tanggal masa lalu.</small>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Suasana Hati / Emosi Karir <span class="required">*</span></label>
+            <div class="mood-selector-grid">
+              <label class="mood-opt">
+                <input type="radio" name="formMood" value="ambisius" checked>
+                <span class="mood-opt-pill">🚀 Ambisius</span>
+              </label>
+              <label class="mood-opt">
+                <input type="radio" name="formMood" value="tumbuh">
+                <span class="mood-opt-pill">🌱 Tumbuh</span>
+              </label>
+              <label class="mood-opt">
+                <input type="radio" name="formMood" value="menantang">
+                <span class="mood-opt-pill">⛈️ Menantang</span>
+              </label>
+              <label class="mood-opt">
+                <input type="radio" name="formMood" value="pencerahan">
+                <span class="mood-opt-pill">💡 Pencerahan</span>
+              </label>
+              <label class="mood-opt">
+                <input type="radio" name="formMood" value="bangga">
+                <span class="mood-opt-pill">🏆 Bangga</span>
+              </label>
+              <label class="mood-opt">
+                <input type="radio" name="formMood" value="reflektif">
+                <span class="mood-opt-pill">☕ Reflektif</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2: Title -->
+        <div class="form-group">
+          <label for="formTitle" class="form-label">
+            Judul Catatan / Babak <span class="required">*</span>
+          </label>
+          <input type="text" id="formTitle" class="form-control" placeholder="Contoh: Menghadapi Keputusan Tersulit dalam Karir atau Sukses Rilis Proyek Impian" required>
+        </div>
+
+        <!-- Row 3: Role & Company -->
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="formRole" class="form-label">Posisi / Peran Saat Itu</label>
+            <input type="text" id="formRole" class="form-control" placeholder="Contoh: Junior Developer, Senior Engineer, Tech Lead">
+          </div>
+          <div class="form-group">
+            <label for="formCompany" class="form-label">Perusahaan / Proyek Terkait</label>
+            <input type="text" id="formCompany" class="form-control" placeholder="Contoh: Startup Teknologi, Proyek Mandiri, Perusahaan">
+          </div>
+        </div>
+
+        <!-- Row: Photo Attachment -->
+        <div class="form-group">
+          <label class="form-label">
+            📸 Foto / Gambar Kenangan (Opsional)
+          </label>
+          <div class="image-upload-wrapper">
+            <div class="image-upload-dropzone" id="imageUploadDropzone" onclick="triggerFileInput()">
+              <input type="file" id="formImageFile" accept="image/*" style="display:none;" onchange="handleImageFileSelect(event)">
+              <div class="dropzone-content" id="dropzonePrompt">
+                <span class="upload-icon">📷</span>
+                <span class="upload-text">Klik untuk unggah foto dari perangkat / galeri</span>
+                <span class="upload-hint">Format JPG, PNG, WebP (otomatis dioptimasi)</span>
+              </div>
+              <div class="image-preview-box" id="imagePreviewBox" style="display:none;">
+                <img id="imagePreviewImg" src="" alt="Pratinjau Foto">
+                <button type="button" class="btn-remove-image" onclick="removeSelectedImage(event)" title="Hapus Foto">&times;</button>
+              </div>
+            </div>
+            <input type="hidden" id="formImageData" value="">
+            <div class="image-url-toggle-row">
+              <span class="or-divider">Atau gunakan URL gambar:</span>
+              <input type="url" id="formImageUrl" class="form-control form-control-sm" placeholder="https://images.unsplash.com/... atau tautan gambar langsung" oninput="handleImageUrlInput(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4: Narrative Content with live preview switcher -->
+        <div class="form-group">
+          <div class="editor-header-bar">
+            <label for="formContent" class="form-label">
+              Kisah & Refleksi Lengkap <span class="required">*</span>
+            </label>
+            <div class="editor-view-tabs">
+              <button type="button" class="tab-btn active" id="tabEditorWrite" onclick="showEditorTab('write')">Editor</button>
+              <button type="button" class="tab-btn" id="tabEditorPreview" onclick="showEditorTab('preview')">Pratinjau</button>
+            </div>
+          </div>
+
+          <div class="editor-wrapper" id="editorWriteContainer">
+            <textarea id="formContent" class="form-control textarea-content" rows="8" placeholder="Tuliskan apa yang terjadi, apa yang kamu rasakan, bagaimana kamu merespons situasi, dan apa makna hari ini bagimu..." required></textarea>
+          </div>
+          <div class="editor-preview-container glass-panel" id="editorPreviewContainer" style="display:none;">
+            <!-- Live rendered preview -->
+          </div>
+        </div>
+
+        <!-- Row 5: Future Self Message -->
+        <div class="form-group">
+          <label for="formFutureMessage" class="form-label">
+            ✉️ Pesan untuk Diri Sendiri di Masa Depan (Akan dibaca kembali di tahun-tahun mendatang)
+          </label>
+          <input type="text" id="formFutureMessage" class="form-control" placeholder="Contoh: Jika kamu membaca ini beberapa tahun lagi, ingatlah bahwa keberanian dimulai dari langkah kecil ini.">
+        </div>
+
+        <!-- Row 6: Key Takeaway / Lesson -->
+        <div class="form-group">
+          <label for="formLessons" class="form-label">
+            💡 Pelajaran Berharga Hari Ini (Pisahkan dengan baris baru untuk setiap poin)
+          </label>
+          <textarea id="formLessons" class="form-control" rows="3" placeholder="Poin 1: Jangan ragu bertanya saat bingung.&#10;Poin 2: Komunikasi yang jelas mencegah 90% masalah teknis."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btnWriterCancel" onclick="closeWriterModal()">Batal</button>
+          <button type="submit" class="btn btn-primary btn-glow" id="btnSaveDiary">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            <span>Simpan Catatan</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Profile & Data Backup Modal -->
+  <div class="modal-backdrop" id="backupModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-backup glass-panel">
+      <div class="modal-header">
+        <h3 class="modal-title">Pengaturan & Cadangan Data Diary</h3>
+        <button class="modal-close-btn" id="btnBackupClose" onclick="closeBackupModal()" title="Tutup">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Profile Settings Form -->
+        <div class="backup-card glass-panel">
+          <h4 class="card-subtitle">Profil Penulis Diary</h4>
+          <div class="form-group">
+            <label for="settingAuthorName" class="form-label">Nama Anda</label>
+            <input type="text" id="settingAuthorName" class="form-control" value="Yoan">
+          </div>
+          <div class="form-group">
+            <label for="settingAuthorHeadline" class="form-label">Headline Karir</label>
+            <input type="text" id="settingAuthorHeadline" class="form-control" value="Software Engineer & Life-Long Learner">
+          </div>
+          <div class="form-group">
+            <label for="settingAuthorBio" class="form-label">Bio Singkat</label>
+            <textarea id="settingAuthorBio" class="form-control" rows="2">Membangun karir bukan hanya tentang mendaki tangga jabatan, melainkan tentang jejak kebaikan yang ditinggalkan dan cerita-cerita kecil yang layak untuk diingat.</textarea>
+          </div>
+          <button class="btn btn-secondary btn-sm" id="btnSaveProfileSettings" onclick="handleSaveProfileSettings()">Simpan Perubahan Profil</button>
+        </div>
+
+        <!-- Backup & Restore -->
+        <div class="backup-card glass-panel" style="margin-top: 1.5rem;">
+          <h4 class="card-subtitle">Cadangan & Pemulihan (Backup & Restore)</h4>
+          <p class="backup-desc">
+            Semua catatan diary tersimpan aman di peramban (browser) Anda. Unduh cadangan file JSON secara berkala agar kenangan Anda tidak pernah hilang.
+          </p>
+          <div class="backup-btn-row">
+            <button class="btn btn-primary btn-sm" id="btnExportData" onclick="handleExportBackup()">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <span>Unduh File Cadangan (JSON)</span>
+            </button>
+            <label class="btn btn-secondary btn-sm file-input-label">
+              <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              <span>Pulihkan dari File JSON</span>
+              <input type="file" id="fileImportInput" accept=".json" onchange="handleFileImport(event)" style="display:none;">
+            </label>
+          </div>
+        </div>
+
+        <!-- Reset to Default Sample Data -->
+        <div class="backup-card glass-panel danger-zone" style="margin-top: 1.5rem;">
+          <h4 class="card-subtitle danger-text">Zona Reset</h4>
+          <p class="backup-desc">Kembalikan ke contoh catatan default (berguna untuk melihat kembali demo fitur).</p>
+          <button class="btn btn-danger-subtle btn-sm" id="btnResetToDefaults" onclick="handleResetToDefaults()">Muat Ulang Contoh Data Awal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
